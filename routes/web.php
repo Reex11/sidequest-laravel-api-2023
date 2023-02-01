@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +18,36 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Login
+
+// Register
+
+// List Events
+Route::get("events", function () {
+    return Event::all();
+});
+
+// Show Event
+Route::get("events/{id}", function ($id) {
+    return Event::find($id);
+});
+
+// List users
+Route::get("users", function () {
+    return User::all();
+});
+
+// Show User
+Route::get("users/{id}", function ($id) {
+    return User::find($id);
+});
+
+// Create Event
+
+// Approve Event
+
+// Decline Event
 
 

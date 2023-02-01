@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('category')->default("general");
             $table->datetime('datetime')->useCurrent();
             $table->text('description')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
