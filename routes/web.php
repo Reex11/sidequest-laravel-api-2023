@@ -26,12 +26,12 @@ Route::get('/', function () {
 
 // List Events
 Route::get("events", function () {
-    return Event::all();
+    return Event::where('status','approved')->get();
 });
 
 // Show Event
 Route::get("events/{id}", function ($id) {
-    return Event::find($id);
+    return Event::findOrFail($id);
 });
 
 // List users
@@ -41,7 +41,7 @@ Route::get("users", function () {
 
 // Show User
 Route::get("users/{id}", function ($id) {
-    return User::find($id);
+    return User::findOrFail($id);
 });
 
 // Create Event
