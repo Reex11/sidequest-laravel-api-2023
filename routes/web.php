@@ -56,7 +56,10 @@ Route::get("users/{id}", function ($id) {
     return User::findOrFail($id);
 });
 
-// Create Event
+// List User Events
+Route::get("users/{id}/events", function ($id) {
+    return User::findOrFail($id)->events;
+});
 
 // Approve Event
 

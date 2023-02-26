@@ -54,7 +54,8 @@ Route::post("events/create", function (Request $request) {
             'title' => 'required|max:255',
             'category' => 'required|max:255|alpha_num',
             'datetime' => 'required|date',
-            'description' => 'max:255'
+            'description' => 'max:255',
+            'user_id' => 'integer' // User id should not be provided by user, it should be provided by the backend, but since we are not using authentication, we will use this.
         ]);
 
         // If validation fails, return an error message
@@ -72,9 +73,10 @@ Route::post("events/create", function (Request $request) {
             'category' => $validated['category'],
             'datetime' => $validated['datetime'],
             'description' => $validated['description'] ?? null,
+            'user_id' => $validated['user_id'] ?? null,
             // No need to include "status" as it will default to "pending"
         ]);
 
         // Returning the created event to the user
-        return $event;
+        return Event::find($event->id); // changed this to find the event by id instead of returning the $event object as the $event object does not reflect the data from the database
     });
