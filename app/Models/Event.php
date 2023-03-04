@@ -15,4 +15,8 @@ class Event extends Model
         'category',
         'datetime'
     ];
+
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

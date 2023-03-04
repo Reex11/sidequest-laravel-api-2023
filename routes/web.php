@@ -34,6 +34,18 @@ Route::get("events/{id}", function ($id) {
     return Event::findOrFail($id);
 });
 
+// List Events from a category
+/*
+    Related Resources:
+    https://laravel.com/docs/9.x/routing#route-parameters
+    https://laravel.com/docs/9.x/collections#method-where
+*/
+Route::get("category/{category}", function ($category) {
+    // A query to select events where category == $category
+    return Event::where("category",$category)->get();
+});
+
+
 // List users
 Route::get("users", function () {
     return User::all();
@@ -44,7 +56,10 @@ Route::get("users/{id}", function ($id) {
     return User::findOrFail($id);
 });
 
-// Create Event
+// List User Events
+Route::get("users/{id}/events", function ($id) {
+    return User::findOrFail($id)->events;
+});
 
 // Approve Event
 
